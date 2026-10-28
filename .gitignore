@@ -1,0 +1,8 @@
+.omx/
+tmp/
+.preview/
+node_modules/
+*.log
+output/
+design-system/
+assets/Xiang_Chen_CV.pdf
