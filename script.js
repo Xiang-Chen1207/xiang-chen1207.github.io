@@ -43,6 +43,40 @@ narrowScreen.addEventListener('change', () => {
   if (narrowScreen.matches && focusedInMenu) menuButton.focus();
 });
 
+const newsList = document.querySelector('#news-list');
+const newsToggle = document.querySelector('.news-toggle');
+
+if (newsList && newsToggle) {
+  // The dated HTML list is the single source of truth, including without JavaScript.
+  const newsEntries = [...newsList.children]
+    .map((item, index) => ({ item, index, date: item.querySelector('time').dateTime }))
+    .sort((a, b) => b.date.localeCompare(a.date) || a.index - b.index);
+  const visibleCount = 3;
+  let expanded = false;
+
+  newsList.append(...newsEntries.map(({ item }) => item));
+
+  function updateNews() {
+    newsEntries.forEach(({ item }, index) => {
+      item.hidden = !expanded && index >= visibleCount;
+    });
+    const hiddenCount = Math.max(0, newsEntries.length - visibleCount);
+    newsToggle.hidden = hiddenCount === 0;
+    newsToggle.setAttribute('aria-expanded', String(expanded));
+    newsToggle.textContent = expanded ? 'Show less' : `Show more (${hiddenCount})`;
+  }
+
+  newsToggle.addEventListener('click', () => {
+    expanded = !expanded;
+    updateNews();
+    if (!expanded) {
+      newsToggle.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+    }
+  });
+
+  updateNews();
+}
+
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
