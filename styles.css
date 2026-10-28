@@ -125,7 +125,7 @@ h3 { font-size: 15px; line-height: 1.5; font-weight: 700; }
 .competition-result { color: var(--purple); font-size: 13px; font-weight: 600; margin-top: 6px; }
 .competition-result span { color: var(--muted); font-weight: 400; }
 .competition-entry > p:last-of-type { font-size: 14px; line-height: 1.75; margin-top: 8px; }
-.project-figure { display: block; width: 100%; max-width: 600px; margin: 16px 0 10px; line-height: 0; cursor: zoom-in; }
+.project-figure { display: block; width: 100%; margin: 16px 0 10px; line-height: 0; cursor: zoom-in; }
 .project-figure img { display: block; width: 100%; height: auto; }
 .project-links { display: flex; flex-wrap: wrap; gap: 0 22px; }
 .site-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--line); padding: 22px 0 32px; font-size: 11px; color: var(--muted); }
